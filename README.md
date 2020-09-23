@@ -44,9 +44,8 @@ PASSWORD:
 Updated: rootfs_overlay/etc/wpa_supplicant.conf
 Updated: buildroot/board/raspberrypi0w/rootfs_overlay/etc/wpa_supplicant.conf
 
-Done! You can either copy the wpa_supplicant.conf file to /etc on an already flashed SD card, or run make inside buildroot, and flash the new image and your new WiFi settings will be set.
+# Done! You can either copy the wpa_supplicant.conf file to /etc on an already flashed SD card, or run make inside buildroot, and flash the new image and your new WiFi settings will be set.
 
-~/uwipi$ 
 ```
 ## Notes:
 * Change the root password for obvious security resons! Buildroot does not add
