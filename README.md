@@ -1,12 +1,11 @@
 # Micro WiPi
-Micro WiPi is a Wifi enabled minimum config for RPi Zero W on Buildroot
+Micro WiPi is a Wifi enabled minimum config for RPi Zero W on Buildroot!
 
 It takes the form of some minimal additional packgages added to the
-buildroot defconfig and the necessary rootfs overlay.
+buildroot defconfig and just the necessary rootfs overlay in order to
+get wifi working on an otherwise completley bare-bones system image.
 
-The end result is an sd card image that will boot on a
-raspberrypi zero w and be able to ping servers on the 
-internet in about 12 seconds.
+The end result is an sd card image that will boot on a Raspberry Pi Zero W and be able to ping servers in about 12 seconds.
 
 # Installing
 
@@ -36,3 +35,10 @@ internet in about 12 seconds.
 ~/uwipi$ ./flash.sh sdc #NOTE!! replace sdc with the root device of your sd card
 ```
 
+## Notes:
+* Change the root password for obvious security resons! Buildroot does not add
+any users by default, so unless you add any, you must log in using root. 
+The buildroot default is not to have a root password, but to enable SSH,
+uWiPi makes the root password "buildroot" by default. 
+* The WiFi ssid and password are set in rootfs\_overlay/etc/wpa\_supplicant.conf
+* Only WPA protected networks are supported without further changes
