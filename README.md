@@ -8,6 +8,8 @@ get wifi working on an otherwise completley bare-bones system image.
 The end result is an sd card image that will boot on a Raspberry Pi Zero W 
 and be able to ping servers in about 12 seconds.
 
+![Boot demo video](doc/boot_demo.webm)
+
 # Installing
 
 ```bash
