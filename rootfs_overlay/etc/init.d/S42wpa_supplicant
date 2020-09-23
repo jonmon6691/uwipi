@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+# Start/stop wpa_supplicant
+#
+
+DAEMON=/usr/sbin/wpa_supplicant
+CONFIG=/etc/wpa_supplicant.conf
+PIDFILE=/var/run/wpa_supplicant.pid
+
+[ -f $CONFIG ] || exit 0
+
+case "$1" in
+  start)
+	echo "Starting wpa_supplicant..."
+	start-stop-daemon -S -x "$DAEMON" -p "$PIDFILE" -- -c"$CONFIG" -iwlan0 -B
+	;;
+  stop)
+	echo "Stopping wpa_supplicant..."
+	start-stop-daemon -K -x "$DAEMON" -p "$PIDFILE" -o
+	;;
+  reload|force-reload)
+	echo "Reloading wpa_supplicant configuration..."
+	"$DAEMON" -s reload
+	;;
+  restart)
+	"$0" stop
+	sleep 1 # Prevent race condition: ensure wpa_supplicant stops before start.
+	"$0" start
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart|reload|force-reload}"
+	exit 1
+esac
