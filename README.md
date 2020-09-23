@@ -20,11 +20,11 @@ The end result is an sd card image that will boot on a Raspberry Pi Zero W and b
 # Apply Micro WiPi to the buildroot tree, this only touches raspberrypi related stuff
 ~/uwipi$ ./install_uwipi.sh
 
-# cd into buildroot and build like normal
+# cd into buildroot and load the defconfig like normal
 ~/uwipi$ cd buildroot
 ~/uwipi/buildroot$ make raspberrypi0w_defconfig
 
-# At this point, you can customize your buildroot configuration, add packages, etc.
+# OPTIONAL: At this point, you can customize your buildroot configuration, add packages, etc.
 ~/uwipi/buildroot$ make menuconfig
 
 # Build the image, this will take a long time as it builds the tool chain, kernel, and everything else...
@@ -35,6 +35,19 @@ The end result is an sd card image that will boot on a Raspberry Pi Zero W and b
 ~/uwipi$ ./flash.sh sdc #NOTE!! replace sdc with the root device of your sd card
 ```
 
+# Changing the WiFi network
+``` bash
+~/uwipi$ ./configure_wifi.sh
+SSID: NETGEAR_404
+PASSWORD: 
+
+Updated: rootfs_overlay/etc/wpa_supplicant.conf
+Updated: buildroot/board/raspberrypi0w/rootfs_overlay/etc/wpa_supplicant.conf
+
+Done! You can either copy the wpa_supplicant.conf file to /etc on an already flashed SD card, or run make inside buildroot, and flash the new image and your new WiFi settings will be set.
+
+~/uwipi$ 
+```
 ## Notes:
 * Change the root password for obvious security resons! Buildroot does not add
 any users by default, so unless you add any, you must log in using root. 
